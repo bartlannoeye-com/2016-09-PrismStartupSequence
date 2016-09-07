@@ -1,6 +1,9 @@
 ﻿using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
+using Autofac;
 using Prism.Autofac.Windows;
+using StartupSequence.Services;
+using StartupSequence.Views;
 
 namespace StartupSequence
 {
@@ -16,6 +19,7 @@ namespace StartupSequence
         public App()
         {
             InitializeComponent();
+            ExtendedSplashScreenFactory = (splashscreen) => new ExtendedSplashScreen(splashscreen);
         }
 
         protected override async Task OnLaunchApplicationAsync(LaunchActivatedEventArgs args)
@@ -23,10 +27,16 @@ namespace StartupSequence
             if (args.PreviousExecutionState != ApplicationExecutionState.Running)
             {
                 // Here we would load the application's resources.
-                await LoadAppResources();
             }
+            await LoadAppResources();
 
-            NavigationService.Navigate("Main", null);
+            NavigationService.Navigate(PageTokens.SetupPage, null);
+        }
+
+        protected override void ConfigureContainer(ContainerBuilder builder)
+        {
+            builder.RegisterType<ApplicationSettingsService>().As<IApplicationSettingsService>().SingleInstance();
+            base.ConfigureContainer(builder);
         }
 
         /// <summary>
@@ -35,7 +45,7 @@ namespace StartupSequence
         /// <returns></returns>
         private Task LoadAppResources()
         {
-            return Task.Delay(7000);
+            return Task.Delay(5000);
         }
     }
 }

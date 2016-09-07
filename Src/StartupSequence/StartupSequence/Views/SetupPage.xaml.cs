@@ -2,9 +2,9 @@
 
 namespace StartupSequence.Views
 {
-    public sealed partial class MainPage : Page
+    public sealed partial class SetupPage : Page
     {
-        public MainPage()
+        public SetupPage()
         {
             this.InitializeComponent();
         }
