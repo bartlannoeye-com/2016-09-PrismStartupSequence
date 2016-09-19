@@ -1,30 +1,36 @@
-﻿using System.Threading.Tasks;
+﻿using Windows.Storage;
 
 namespace StartupSequence.Services
 {
+    /// <summary>
+    /// This would probably do some async calls to local storage or the cloud
+    /// Keeping it simple for sample purposes
+    /// </summary>
     internal class ApplicationSettingsService : IApplicationSettingsService
     {
-        private string _username;
-        private bool _isConfigurationComplete;
+        private const string KeyUsername = "Username";
+        private const string KeyConfiguration = "Configuration";
 
         public void Login(string username)
         {
-            _username = username;
+            ApplicationData.Current.LocalSettings.Values[KeyUsername] = username;
         }
 
         public string GetUser()
         {
-            return _username;
+            return ApplicationData.Current.LocalSettings.Values[KeyUsername]?.ToString();
         }
 
         public void SetConfigurationCompleted()
         {
-            _isConfigurationComplete = true;
+            ApplicationData.Current.LocalSettings.Values[KeyConfiguration] = true;
         }
 
         public bool IsConfigured()
         {
-            return _isConfigurationComplete;
+            if (ApplicationData.Current.LocalSettings.Values.ContainsKey(KeyConfiguration))
+                return (bool) ApplicationData.Current.LocalSettings.Values[KeyConfiguration];
+            return false;
         }
     }
 }
