@@ -38,6 +38,7 @@ namespace StartupSequence.ViewModels
         {
             _applicationSettingsService.Login(Username);
             _navigationService.Navigate(StartupService.GetFromBootSequence(), null);
+            _navigationService.RemoveAllPages();
         }
     }
 }

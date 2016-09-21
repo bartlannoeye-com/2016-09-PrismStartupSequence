@@ -24,6 +24,7 @@ namespace StartupSequence.ViewModels
         {
             _applicationSettingsService.SetConfigurationCompleted();
             _navigationService.Navigate(StartupService.GetFromBootSequence(), null);
+            _navigationService.RemoveAllPages();
         }
     }
 }
