@@ -11,5 +11,10 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <TextBlock Text="{Binding Message}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Orientation="Horizontal">
+            <Button Command="{Binding ClearSetupCommand}">Clear setup</Button>
+            <Button Command="{Binding LogoutCommand}">Logout</Button>
+        </StackPanel>
     </Grid>
 </Page>

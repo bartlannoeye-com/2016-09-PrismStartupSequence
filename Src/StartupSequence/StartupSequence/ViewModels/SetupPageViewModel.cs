@@ -23,7 +23,7 @@ namespace StartupSequence.ViewModels
         private void OnGoClicked()
         {
             _applicationSettingsService.SetConfigurationCompleted();
-            _navigationService.Navigate(PageTokens.LoginPage, null);
+            _navigationService.Navigate(StartupService.GetFromBootSequence(), null);
         }
     }
 }

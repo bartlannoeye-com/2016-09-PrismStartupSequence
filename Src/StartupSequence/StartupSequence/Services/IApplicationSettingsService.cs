@@ -6,5 +6,7 @@
         string GetUser();
         void SetConfigurationCompleted();
         bool IsConfigured();
+        void ClearSetup();
+        void Logout();
     }
 }

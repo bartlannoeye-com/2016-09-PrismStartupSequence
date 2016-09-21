@@ -32,5 +32,15 @@ namespace StartupSequence.Services
                 return (bool) ApplicationData.Current.LocalSettings.Values[KeyConfiguration];
             return false;
         }
+
+        public void ClearSetup()
+        {
+            ApplicationData.Current.LocalSettings.Values[KeyConfiguration] = false;
+        }
+
+        public void Logout()
+        {
+            Login(null);
+        }
     }
 }

@@ -37,7 +37,7 @@ namespace StartupSequence.ViewModels
         private void OnLoginClicked()
         {
             _applicationSettingsService.Login(Username);
-            _navigationService.Navigate(PageTokens.MainPage, null);
+            _navigationService.Navigate(StartupService.GetFromBootSequence(), null);
         }
     }
 }

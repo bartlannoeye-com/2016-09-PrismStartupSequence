@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 using Autofac;
+using Microsoft.Practices.ServiceLocation;
 using Prism.Autofac.Windows;
 using StartupSequence.Services;
 using StartupSequence.Views;
@@ -28,9 +29,12 @@ namespace StartupSequence
             {
                 // Here we would load the application's resources.
             }
+
+            await FillNavigationQueueAsync();
             await LoadAppResources();
 
-            NavigationService.Navigate(PageTokens.SetupPage, null);
+            //NavigationService.Navigate(PageTokens.SetupPage, null);
+            NavigationService.Navigate(StartupService.GetFromBootSequence(), null);
         }
 
         protected override void ConfigureContainer(ContainerBuilder builder)
@@ -45,7 +49,30 @@ namespace StartupSequence
         /// <returns></returns>
         private Task LoadAppResources()
         {
-            return Task.Delay(5000);
+            return Task.Delay(1000);
+        }
+
+        private async Task FillNavigationQueueAsync()
+        {
+            // do some async tasks to check the startup logic
+
+
+            var applicationSettingsService = ServiceLocator.Current.GetInstance<IApplicationSettingsService>();
+
+            // step 1: check initial setup
+            if (!applicationSettingsService.IsConfigured())
+            {
+                StartupService.AddToBootSequence(PageTokens.SetupPage);
+            }
+
+            // step 2: check user logged in
+            if (string.IsNullOrEmpty(applicationSettingsService.GetUser()))
+            {
+                StartupService.AddToBootSequence(PageTokens.LoginPage);
+            }
+
+            // step 3: actual main page
+            StartupService.AddToBootSequence(PageTokens.MainPage);
         }
     }
 }
