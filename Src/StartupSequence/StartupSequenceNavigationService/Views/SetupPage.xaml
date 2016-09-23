@@ -1,0 +1,18 @@
+﻿<Page
+    x:Class="StartupSequenceNavigationService.Views.SetupPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mvvm="using:Prism.Windows.Mvvm"
+    mvvm:ViewModelLocator.AutoWireViewModel="True"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock>This page is shown when your application needs some configuration to be set up.</TextBlock>
+            <TextBlock>You're ready to get started.</TextBlock>
+            <Button Width="100" Command="{Binding GoCommand}" HorizontalAlignment="Center">Go</Button>
+        </StackPanel>
+    </Grid>
+</Page>

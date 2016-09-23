@@ -1,0 +1,12 @@
+﻿namespace StartupSequenceNavigationService.Services
+{
+    internal interface IApplicationSettingsService
+    {
+        void Login(string username);
+        string GetUser();
+        void SetConfigurationCompleted();
+        bool IsConfigured();
+        void ClearSetup();
+        void Logout();
+    }
+}
