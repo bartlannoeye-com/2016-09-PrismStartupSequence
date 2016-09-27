@@ -7,12 +7,12 @@ namespace StartupSequenceNavigationService.ViewModels
 {
     internal class SetupPageViewModel : ViewModelBase
     {
-        private readonly INavigationService _navigationService;
+        private readonly INavigationServiceWithBootSequence _navigationService;
         private readonly IApplicationSettingsService _applicationSettingsService;
 
         public SetupPageViewModel(INavigationService navigationService, IApplicationSettingsService applicationSettingsService)
         {
-            _navigationService = navigationService;
+            _navigationService = (INavigationServiceWithBootSequence)navigationService;
             _applicationSettingsService = applicationSettingsService;
 
             GoCommand = new DelegateCommand(OnGoClicked);
@@ -23,7 +23,7 @@ namespace StartupSequenceNavigationService.ViewModels
         private void OnGoClicked()
         {
             _applicationSettingsService.SetConfigurationCompleted();
-            _navigationService.Navigate(PageTokens.LoginPage, null);
+            _navigationService.ContinueBootSequence();
         }
     }
 }

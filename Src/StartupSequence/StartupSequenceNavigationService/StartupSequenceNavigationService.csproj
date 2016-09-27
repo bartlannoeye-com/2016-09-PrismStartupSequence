@@ -99,7 +99,9 @@
     <Compile Include="PageTokens.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ApplicationSettingsService.cs" />
+    <Compile Include="Services\FrameNavigationServiceWithBootSequence.cs" />
     <Compile Include="Services\IApplicationSettingsService.cs" />
+    <Compile Include="Services\INavigationServiceWithBootSequence.cs" />
     <Compile Include="ViewModels\LoginPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\SetupPageViewModel.cs" />

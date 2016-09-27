@@ -7,12 +7,12 @@ namespace StartupSequenceNavigationService.ViewModels
 {
     internal class LoginPageViewModel : ViewModelBase
     {
-        private readonly INavigationService _navigationService;
+        private readonly INavigationServiceWithBootSequence _navigationService;
         private readonly IApplicationSettingsService _applicationSettingsService;
 
         public LoginPageViewModel(INavigationService navigationService, IApplicationSettingsService applicationSettingsService)
         {
-            _navigationService = navigationService;
+            _navigationService = (INavigationServiceWithBootSequence)navigationService;
             _applicationSettingsService = applicationSettingsService;
 
             LoginCommand = new DelegateCommand(OnLoginClicked);
@@ -37,7 +37,7 @@ namespace StartupSequenceNavigationService.ViewModels
         private void OnLoginClicked()
         {
             _applicationSettingsService.Login(Username);
-            _navigationService.Navigate(PageTokens.MainPage, null);
+            _navigationService.ContinueBootSequence();
         }
     }
 }

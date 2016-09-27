@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Prism.Commands;
 using Prism.Windows.Mvvm;
 using Prism.Windows.Navigation;
 using StartupSequenceNavigationService.Services;
@@ -12,6 +13,9 @@ namespace StartupSequenceNavigationService.ViewModels
         public MainPageViewModel(IApplicationSettingsService applicationSettingsService)
         {
             _applicationSettingsService = applicationSettingsService;
+
+            ClearSetupCommand = new DelegateCommand(() => { _applicationSettingsService.ClearSetup(); });
+            LogoutCommand = new DelegateCommand(() => { _applicationSettingsService.Logout(); });
         }
 
         private string _message;
@@ -20,6 +24,9 @@ namespace StartupSequenceNavigationService.ViewModels
             get { return _message; }
             set { SetProperty(ref _message, value); }
         }
+
+        public DelegateCommand ClearSetupCommand { get; private set; }
+        public DelegateCommand LogoutCommand { get; private set; }
 
         public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
