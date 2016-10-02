@@ -57,7 +57,7 @@ namespace StartupSequenceNavigationService.Services
                     InBootSequence = false;
 
                 bool navigated = Navigate(sequenceItem.PageToken, sequenceItem.Parameter);
-                RemoveAllPages();
+                RemoveLastPage();
                 return navigated;
             }
 

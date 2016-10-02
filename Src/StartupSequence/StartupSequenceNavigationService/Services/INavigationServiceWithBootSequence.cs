@@ -1,15 +1,10 @@
-﻿// Note: this is an extension of Prism's INavigationServic
+﻿// Note: this is an extension of Prism's INavigationService
 // https://github.com/PrismLibrary/Prism
 
 using Prism.Windows.Navigation;
 
 namespace StartupSequenceNavigationService.Services
 {
-    /// <summary>
-    /// The INavigationService interface is used for creating a navigation service for your Windows Store app.
-    /// The default implementation of INavigationService is the FrameNavigationService class, that uses a class that implements the IFrameFacade interface
-    /// to provide page navigation.
-    /// </summary>
     public interface INavigationServiceWithBootSequence : INavigationService
     {
         /// <summary>

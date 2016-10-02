@@ -61,6 +61,7 @@ namespace StartupSequenceNavigationService
         {
             return Task.Delay(1000);
         }
+
         private async Task FillNavigationQueueAsync()
         {
             // do some async tasks to check the startup logic
@@ -68,7 +69,6 @@ namespace StartupSequenceNavigationService
 
             var applicationSettingsService = ServiceLocator.Current.GetInstance<IApplicationSettingsService>();
             var extendedNavigationService = (INavigationServiceWithBootSequence)NavigationService;
-            extendedNavigationService.ContinueBootSequence();
 
             // step 1: check initial setup
             if (!applicationSettingsService.IsConfigured())
